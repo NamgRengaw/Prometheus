@@ -3,15 +3,15 @@ package com.prometheus.api.security.login.domain.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.prometheus.api.security.login.adapters.output.LoginDao;
-import com.prometheus.api.security.login.controllers.repositoryJpa.UserRepository;
+import com.prometheus.api.security.login.controllers.controllerDao.UserControllerDao;
 import com.prometheus.api.security.login.domain.entity.User;
 
 public class LoginDaoImpl implements LoginDao {
 
-	private UserRepository userRepository;
+	private UserControllerDao userRepository;
 	
 	@Autowired
-	public LoginDaoImpl(UserRepository userRepository) {
+	public LoginDaoImpl(UserControllerDao userRepository) {
 		this.userRepository = userRepository;
 	}
 	
