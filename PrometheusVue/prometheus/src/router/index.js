@@ -1,11 +1,16 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import LandingPage from "../views/LandingPage.vue";
+import EditorPage from "../views/EditorPage.vue";
 
 const routes = [
   {
     path: "/",
     name: "landing-page",
     component: LandingPage,
+  }, {
+    path: "/editor",
+    name: "editor-page",
+    component: EditorPage,
   },
 //  {
 //    path: "/about",
