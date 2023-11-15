@@ -3,7 +3,7 @@
         <q-drawer v-if="isOpen" show-if-above :width="200" :breakpoint="700" elevated class="bg-grey-5 text-black">
             <q-scroll-area class="fit">
                 <div class="q-pa-lg">
-                    <slot name="objects"></slot> 
+                    <slot name="objects"></slot>
                 </div>
             </q-scroll-area>
         </q-drawer>

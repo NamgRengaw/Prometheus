@@ -1,7 +1,13 @@
 <template>
     <div>
-        <div class="drop-zone" @drop="onDrop($event, listNumber)" @dragenter.prevent @dragover.prevent>
-            <editor-drag-element :items="items" :listNumber="listNumber"/>
+        <div @drop="onDrop($event, listNumber)" @dragenter.prevent @dragover.prevent>
+            <q-card class="q-pa-md">
+                <editor-drag-element class="drop-zone" :items="items" :listNumber="listNumber">
+                    <template v-slot:object>
+                        <slot name="object"></slot>
+                    </template>
+                </editor-drag-element>
+            </q-card>
         </div>
     </div>
 </template>
@@ -29,7 +35,27 @@ export default {
         const onDrop = (event, list) => {
             const itemID = event.dataTransfer.getData('itemID')
             const item = props.items.find((item) => item.id == itemID)
-            item.list = list
+            //item.list = list
+            createObject(props.items, list)
+            console.log(props.items)
+        }
+
+        const createObject = (items, listNumber) => {
+            items.push({id: generateUniqueId(items), title: '', list: listNumber});
+        }
+
+        const generateUniqueId = (items) => {
+            if(items.lenght === 0) {
+                return undefined
+            }
+            let id = items[0].id;
+            for(let i = 1; i < items.length; i++) {
+                if(items[i].id > id) {
+                    id = items[i].id
+                }
+            }
+            id++
+            return id;
         }
 
         return {
@@ -42,11 +68,10 @@ export default {
 
 <style lang="scss" scoped>
 .drop-zone {
-    width: 50%;
-    margin: 50px;
-    background-color: #ecf0f1;
-    padding: 10px;
-    min-height: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .drag-el {

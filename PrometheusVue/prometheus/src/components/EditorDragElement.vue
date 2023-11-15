@@ -3,6 +3,7 @@
         <div v-for="item in getList(listNumber)" :key="item.id" class="drag-el" draggable="true"
             @dragstart="startDrag($event, item)">
             {{ item.title }}
+            <slot name="object"></slot>
         </div>
     </q-card>
 </template>
@@ -11,7 +12,7 @@
 export default {
     props: {
         listNumber: Number,
-        items: Array
+        items: Array,
     },
     setup(props) {
         const getList = (list) => {
@@ -35,8 +36,7 @@ export default {
 <style lang="scss" scoped>
 .drag-el {
     text-align: center;
-    background-color: #3498db;
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 5px;
     margin-bottom: 10px;
 }
